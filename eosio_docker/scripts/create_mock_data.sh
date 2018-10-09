@@ -3,9 +3,8 @@ set -o errexit
 
 echo "=== start deploy data ==="
 
-cleos() {
-  /opt/eosio/bin/cleos "$@"
-}
+# set PATH
+PATH="$PATH:/opt/eosio/bin"
 
 # cd into script's folder
 cd "$(dirname "$0")"
@@ -13,7 +12,7 @@ cd "$(dirname "$0")"
 echo "=== start create accounts in blockchain ==="
 
 # import bobross account private key and create mock posts under bobross
-cleos wallet import -n blogwallet --private-key 5K7mtrinTFrVTduSxizUc5hjXJEtTjVTsqSHeBHes1Viep86FP5
+cleos wallet import -n witnesswallet --private-key 5K7mtrinTFrVTduSxizUc5hjXJEtTjVTsqSHeBHes1Viep86FP5
 
 # download jq for json reader, we use jq here for reading the json file ( accounts.json )
 mkdir -p ~/bin && curl -sSL -o ~/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && chmod +x ~/bin/jq && export PATH=$PATH:~/bin
@@ -22,10 +21,9 @@ mkdir -p ~/bin && curl -sSL -o ~/bin/jq https://github.com/stedolan/jq/releases/
 
 jq -c '.[]' mock_data.json | while read i; do
   timestamp=$(jq -r '.timestamp' <<< "$i")
-  title=$(jq -r '.title' <<< "$i")
-  content=$(jq -r '.content' <<< "$i")
-  tag=$(jq -r '.tag' <<< "$i")
+  claim=$(jq -r '.content' <<< "$i")
+  witnesses=$(jq -r '.title' <<< "$i")
 
   # push the createpost action to the smart contract
-  cleos push action blogaccount createpost "[ $timestamp, "\""bobross"\"", "\""$title"\"", "\""$content"\"", "\""$tag"\""]" -p bobross@active
+  cleos push action witnessacc claim "[ $timestamp, "\""bobross"\"", "\""$claim"\"", "\""$witnesses"\""]" -p bobross@active
 done

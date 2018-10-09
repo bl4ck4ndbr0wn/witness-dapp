@@ -6,15 +6,14 @@ using namespace std;
 EOSIO_ABI(witness, (claim)(proof)(attest)(appreciate))
 
 // @abi action claim
-void witness::claim(
-    const account_name claimant,
-    const string &claim,
-    vector<account_name> witnesses,
-    const string claim_id)
+void witness::claim(const account_name claimant,
+                    const string &claim,
+                    vector<account_name> witnesses,
+                    const string claim_id)
 {
     // Logic Definition here
 
-    /* 
+    /*
         1. Require Auth of Claimant.
         2. Check if submitted claim is within the required length limits.
             TODO - Establish the Limit length of Claims.

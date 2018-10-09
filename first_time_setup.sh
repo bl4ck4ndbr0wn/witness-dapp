@@ -26,7 +26,7 @@ docker pull eosio/eos-dev:v1.2.5
 # force remove the previous eosio container if it exists
 # create a clean data folder in the eosio_docker to preserve block data
 echo "=== setup/reset data for eosio_docker ==="
-docker stop eosio_blog_container || true && docker rm --force eosio_blog_container || true
+docker stop eosio_witness_container || true && docker rm --force eosio_witness_container || true
 rm -rf "./eosio_docker/data"
 mkdir -p "./eosio_docker/data"
 
