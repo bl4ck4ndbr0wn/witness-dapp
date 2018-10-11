@@ -50,82 +50,74 @@ class CreateClaim extends Component {
       { label: "lisawalters", value: "lisawalters" }
     ];
     return (
-      <section class="gray-bg section-padding" id="service-page">
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
-              <div class="page-title">
-                <h2>Claims</h2>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Velit voluptates, temporibus at, facere harum fugiat!
-                </p>
-              </div>
+      <div
+        className="modal fade"
+        id="exampleModal"
+        tabIndex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">
+                Compose New Claim
+              </h5>
+              <button
+                type="button"
+                className="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12 col-md-4">
-              <address class="side-icon-boxes">
-                <div class="side-icon-box">
-                  <div class="side-icon">
-                    <img src="images/location-arrow.png" alt="" />
-                  </div>
-                  <p>
-                    <strong>Address: </strong> Box 564, Disneyland <br />
-                    USA
-                  </p>
-                </div>
-                <div class="side-icon-box">
-                  <div class="side-icon">
-                    <img src="images/phone-arrow.png" alt="" />
-                  </div>
-                  <p>
-                    <strong>Telephone: </strong>
-                    <a href="callto:8801812726495">+8801812726495</a> <br />
-                    <a href="callto:8801687420471">+8801687420471</a>
-                  </p>
-                </div>
-                <div class="side-icon-box">
-                  <div class="side-icon">
-                    <img src="images/mail-arrow.png" alt="" />
-                  </div>
-                  <p>
-                    <strong>E-mail: </strong>
-                    <a href="mailto:youremail@example.com">
-                      youremail@example.com
-                    </a>{" "}
-                    <br />
-                    <a href="mailto:youremail@example.com">example@mail.com</a>
-                  </p>
-                </div>
-              </address>
-            </div>
-            <div class="col-xs-12 col-md-8">
-              <form onSubmit={this.createClaim} class="contact-form">
+            <div className="modal-body">
+              <div className="form-group">
+                <label htmlFor="exampleInputEmail1">Claim</label>
                 <textarea
                   name="claim"
                   id="claim"
                   rows="5"
-                  class="form-control"
-                  placeholder="Your message"
+                  className="form-control"
+                  placeholder="Your Claim"
                   // required="required"
                   value={this.state.claim}
                   onChange={this.handleOnChange}
                 />
+                <small id="emailHelp" className="form-text text-muted">
+                  Twitter length.
+                </small>
+              </div>
+              <div className="form-group">
                 <Select
                   onChange={opt => this.handleSelectOnChange(opt)}
                   options={options}
                   isMulti
                 />
-
-                <button type="submit" class="button">
-                  Save Claim
-                </button>
-              </form>
+              </div>
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-primary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={this.createClaim}
+                data-dismiss="modal"
+              >
+                Save Claim
+              </button>
             </div>
           </div>
         </div>
-      </section>
+      </div>
     );
   }
 }

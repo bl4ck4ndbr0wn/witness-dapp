@@ -1,51 +1,35 @@
 import React from "react";
 
 export default () => {
-  const box = {
-    color: "dimgray",
-    background: "whitesmoke"
-  };
   return (
-    <section class="price-area overlay section-padding" id="price-page">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
-            <div class="page-title">
-              <h2>Witnessio</h2>
-              <p>Claims decentralized application</p>
-            </div>
+    <header
+      className="header-area overlay full-height relative v-center"
+      id="home-page"
+    >
+      <div className="absolute anlge-bg" />
+      <div className="container">
+        <div className="row v-center">
+          <div className="col-xs-12 col-md-7 header-text">
+            <h2>It’s all about Promoting your Business</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero
+              ex inventore vel error quibusdam animi fugiat, doloribus dolores
+              consectetur nulla deleniti sint blanditiis quod debitis quis vitae
+              officiis tempora numquam.
+            </p>
+            <a href="#" className="button white">
+              Watch video
+            </a>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12 col-sm-4">
-            <div class="box" style={box}>
-              <div class="box-icon">
-                <img src="images/service-icon-1.png" alt="" />
+          <div className="hidden-xs hidden-sm col-md-5 text-right">
+            <div className="screen-box screen-slider">
+              <div className="item">
+                <img src="images/screen-1.jpg" alt="" />
               </div>
-              <h4>Claim</h4>
-              <p>experience, ccertifications, education etc.</p>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-4">
-            <div class="box" style={box}>
-              <div class="box-icon">
-                <img src="images/service-icon-2.png" alt="" />
-              </div>
-              <h4>Proof</h4>
-              <p>Education certificate uploads.</p>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-4">
-            <div class="box" style={box}>
-              <div class="box-icon">
-                <img src="images/service-icon-3.png" alt="" />
-              </div>
-              <h4>Attestations</h4>
-              <p>Attest to someone elses claims.</p>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </header>
   );
 };

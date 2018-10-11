@@ -31,7 +31,7 @@ export default class EOSIOClient {
       },
       {
         blocksBehind: 3,
-        expireSeconds: 30
+        expireSeconds: 90
       }
     );
   };

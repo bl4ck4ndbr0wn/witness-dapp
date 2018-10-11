@@ -1,14 +1,18 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import { Provider } from "react-redux";
+import store from "./store";
 
 import EOSIOClient from "./utils/eosio-client";
 import IOClient from "./utils/io-client";
 import { updateClaimForCreateAndEdit } from "./utils/witness-updater";
+
 import CreateClaim from "./components/CreateClaim";
-import Claims from "./components/Claims";
 import Navigation from "./components/Navigation";
-import HeaderArea from "./components/HeaderArea";
 import Footer from "./components/Footer";
+import Claims from "./components/Claims/Claims";
 
 class App extends Component {
   state = {
@@ -33,6 +37,9 @@ class App extends Component {
     });
   }
 
+  // scatterAuthorization = async()=> {
+  //   const
+  // }
   // Load claims
   loadClaims = async () => {
     const response = await axios.get(
@@ -44,7 +51,7 @@ class App extends Component {
   // Create a claim
   createClaim = async claim => {
     try {
-      console.log(claim);
+      const { privatekey, actor } = scatterAuthorization();
       const newClaim = {
         ...claim,
         claimant: process.env.REACT_APP_EOSIO_ACCOUNT
@@ -72,21 +79,28 @@ class App extends Component {
   render() {
     console.log(this.state.claims);
     return (
-      <div>
-        {/* <!--Mainmenu-area--> */}
-        <Navigation />
-        {/* <!--Mainmenu-area/--> */}
-
-        {/* <!--Header-area--> */}
-        <HeaderArea />
-        {/* <!--Header-area/--> */}
-        {/* <!--Feature-area--> */}
-
-        <CreateClaim createClaim={this.createClaim} />
-
-        {/* <!--Feature-area/--> */}
-        <Footer />
-      </div>
+      <Provider store={store}>
+        <Router>
+          <Navigation />
+          {/* <!-- Page Content --> */}
+          <div className="container">
+            <div className="row">
+              <div className="col-md-8">
+                <h1 className="my-4">
+                  Claims
+                  <small>All Claims</small>
+                </h1>
+                <Claims
+                  claims={this.state.claims}
+                  handleOnChange={this.handleOnChange}
+                />
+              </div>
+            </div>
+          </div>
+          <CreateClaim createClaim={this.createClaim} />
+          <Footer />
+        </Router>
+      </Provider>
     );
   }
 }
