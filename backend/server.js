@@ -2,12 +2,12 @@ require("dotenv").config();
 const app = require("express")();
 const cors = require("cors");
 const demux = require("./demux");
-const witnessRoute = require("./api/witness/witness.route");
 const io = require("./utils/io");
+const witnessRoutes = require("./api/witness/witness.route");
 
 app.use(cors());
 
-app.use("/witness", witnessRoute);
+app.use("/witness", witnessRoutes);
 
 const port = process.env.PORT;
 

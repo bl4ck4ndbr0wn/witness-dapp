@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import { Provider } from "react-redux";
-import store from "./store";
-
 import EOSIOClient from "./utils/eosio-client";
 import IOClient from "./utils/io-client";
 import { updateClaimForCreateAndEdit } from "./utils/witness-updater";
@@ -37,9 +34,6 @@ class App extends Component {
     });
   }
 
-  // scatterAuthorization = async()=> {
-  //   const
-  // }
   // Load claims
   loadClaims = async () => {
     const response = await axios.get(
@@ -51,7 +45,6 @@ class App extends Component {
   // Create a claim
   createClaim = async claim => {
     try {
-      const { privatekey, actor } = scatterAuthorization();
       const newClaim = {
         ...claim,
         claimant: process.env.REACT_APP_EOSIO_ACCOUNT
@@ -79,28 +72,26 @@ class App extends Component {
   render() {
     console.log(this.state.claims);
     return (
-      <Provider store={store}>
-        <Router>
-          <Navigation />
-          {/* <!-- Page Content --> */}
-          <div className="container">
-            <div className="row">
-              <div className="col-md-8">
-                <h1 className="my-4">
-                  Claims
-                  <small>All Claims</small>
-                </h1>
-                <Claims
-                  claims={this.state.claims}
-                  handleOnChange={this.handleOnChange}
-                />
-              </div>
+      <div>
+        <Navigation />
+        {/* <!-- Page Content --> */}
+        <div className="container">
+          <div className="row">
+            <div className="col-md-8">
+              <h1 className="my-4">
+                Claims
+                <small>All Claims</small>
+              </h1>
+              <Claims
+                claims={this.state.claims}
+                handleOnChange={this.handleOnChange}
+              />
             </div>
           </div>
-          <CreateClaim createClaim={this.createClaim} />
-          <Footer />
-        </Router>
-      </Provider>
+        </div>
+        <CreateClaim createClaim={this.createClaim} />
+        <Footer />
+      </div>
     );
   }
 }

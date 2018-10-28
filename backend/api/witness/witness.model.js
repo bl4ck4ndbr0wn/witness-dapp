@@ -12,7 +12,7 @@ try {
     },
     author: String,
     claim: String,
-    Witness: String,
+    witness: String,
     witnessConfirmed: {
       type: Boolean,
       default: false

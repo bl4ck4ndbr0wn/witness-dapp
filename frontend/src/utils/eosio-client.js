@@ -2,7 +2,7 @@ import eosjs from "eosjs";
 
 export default class EOSIOClient {
   constructor(contractAccount) {
-    const rpc = new eosjs.Rpc.JsonRpc(process.env.REACT_APP_EOSIO_HTTP_URL);
+    const rpc = new eosjs.Rpc.JsonRpc("http://localhost:8888");
     const signatureProvider = new eosjs.SignatureProvider([
       process.env.REACT_APP_EOSIO_PRIVATE_KEY
     ]);
@@ -31,7 +31,7 @@ export default class EOSIOClient {
       },
       {
         blocksBehind: 3,
-        expireSeconds: 90
+        expireSeconds: 30
       }
     );
   };

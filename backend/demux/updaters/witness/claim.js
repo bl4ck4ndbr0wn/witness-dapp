@@ -1,5 +1,5 @@
 async function claim(state, payload, blockInfo, context) {
-  const Witness = state.Witness;
+  const Witness = state.witness;
   try {
     let witness = await Witness.find({
       _id: {
