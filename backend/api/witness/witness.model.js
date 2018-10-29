@@ -2,25 +2,22 @@ const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
-let Witness = null;
+let Claim = null;
 
 try {
-  const WitnessSchema = new Schema({
-    _id: {
-      timestamp: Number,
-      author: String
-    },
-    author: String,
+  const ClaimSchema = new Schema({
+    claim_id: String,
+    claimant: String,
     claim: String,
-    witness: String,
-    witnessConfirmed: {
+    witnesses: [String],
+    claimConfirmed: {
       type: Boolean,
       default: false
     }
   });
-  Witness = mongoose.model("Witness", WitnessSchema);
+  Claim = mongoose.model("Claim", ClaimSchema);
 } catch (e) {
-  Witness = mongoose.model("Witness");
+  Claim = mongoose.model("Claim");
 }
 
-module.exports = Witness;
+module.exports = Claim;

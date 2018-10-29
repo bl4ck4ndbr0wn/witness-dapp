@@ -1,18 +1,16 @@
-const Witness = require("./witness.model");
+const Claim = require("./witness.model");
 
 /**
- * Get list of all witness confirmed by the blockchain
- * @returns {Witness[]}
+ * Get list of all posts confirmed by the blockchain
+ * @returns {Claim[]}
  */
 const listConfirmed = async (req, res) => {
   try {
-    const confirmedWitnesses = await Witness.find({
-      witnessConfirmed: true
-    }).exec();
-    res.send(confirmedWitnesses);
+    const confirmedClaims = await Claim.find({ claimConfirmed: true }).exec();
+    res.send(confirmedClaims);
   } catch (err) {
     console.error(err);
   }
 };
 
-module.exports = listConfirmed;
+module.exports = { listConfirmed };

@@ -1,28 +1,24 @@
-async function claim(state, payload, blockInfo, context) {
-  const Witness = state.witness;
+async function createClaim(state, payload, blockInfo, context) {
+  const Claim = state.claim;
   try {
-    let witness = await Witness.find({
-      _id: {
-        timestamp: payload.data.timestamp,
-        author: payload.data.author
-      }
+    let claim = await Claim.find({
+      claim_id: payload.data.claim_id
     }).exec();
 
-    // if witness already exists do not insert it in again
-    if (witness.length !== 0) return;
+    // if claim already exists do not insert it in again
+    if (claim.length !== 0) return;
 
-    witness = new Witness({
-      _id: {
-        timestamp: payload.data.timestamp,
-        author: payload.data.author
-      },
-      author: payload.data.author,
+    claim = new Claim({
+      claim_id: payload.data.claim_id,
+      claimant: payload.data.claimant,
       claim: payload.data.claim,
-      Witness: payload.data.witness,
-      witnessConfirmed: true
+      witnesses: payload.data.witnesses,
+      claimConfirmed: true
     });
-    await witness.save();
+    await claim.save();
   } catch (err) {
     console.error(err);
   }
 }
+
+module.exports = createClaim;

@@ -1,14 +1,11 @@
-function claim(state, payload, blockInfo, context) {
-  const witness = {
-    _id: {
-      timestamp: payload.data.timestamp,
-      author: payload.data.author
-    },
-    author: payload.data.author,
+function createPost(state, payload, blockInfo, context) {
+  const post = {
+    claim_id: payload.data.claim_id,
+    claimant: payload.data.claimant,
     claim: payload.data.claim,
-    Witness: payload.data.witness
+    witnesses: payload.data.witnesses
   };
-  context.socket.emit("claim", witness);
+  context.socket.emit("createpost", post);
 }
 
-module.exports = claim;
+module.exports = createPost;
