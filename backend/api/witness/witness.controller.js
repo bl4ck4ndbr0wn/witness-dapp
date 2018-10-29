@@ -13,4 +13,15 @@ const listConfirmed = async (req, res) => {
   }
 };
 
-module.exports = { listConfirmed };
+const listConfirmedById = async (req, res) => {
+  try {
+    const confirmedClaims = await Claim.findOne({
+      claim_id: req.params.id
+    }).exec();
+    res.send(confirmedClaims);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+module.exports = { listConfirmed, listConfirmedById };

@@ -4,5 +4,6 @@ const witnessController = require("./witness.controller");
 const router = express.Router();
 
 router.route("/").get(witnessController.listConfirmed);
+router.route("/attest/:id").get(witnessController.listConfirmedById);
 
 module.exports = router;
