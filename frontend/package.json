@@ -10,8 +10,11 @@
     "random-id": "^1.0.3",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "^2.0.5",
     "react-select": "^2.1.1",
+    "scatterjs-core": "^2.3.8",
+    "scatterjs-plugin-eosjs2": "^1.1.6",
     "socket.io-client": "^2.1.1",
     "text-encoding": "^0.7.0",
     "util": "^0.11.0"

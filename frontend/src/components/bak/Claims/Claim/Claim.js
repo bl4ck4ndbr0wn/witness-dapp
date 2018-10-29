@@ -13,6 +13,15 @@ class Claim extends Component {
           <blockquote class="blockquote mb-0">
             <p>{this.props.claim.claim}</p>
             <footer class="blockquote-footer">Witnesses {witnessList}</footer>
+
+            <button
+              type="button"
+              className="btn btn-primary"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            >
+              Attest
+            </button>
           </blockquote>
         </div>
       </div>
