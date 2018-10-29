@@ -1,13 +1,20 @@
-import eosjs from "eosjs";
+import { Api, JsonRpc, RpcError, JsSignatureProvider } from "eosjs";
+const fetch = require("node-fetch"); // node only; not needed in browsers
+const { TextDecoder, TextEncoder } = require("text-encoding"); // IE11 and IE Edge Browsers only
 
 export default class EOSIOClient {
   constructor(contractAccount) {
-    const rpc = new eosjs.Rpc.JsonRpc("http://localhost:8888");
-    const signatureProvider = new eosjs.SignatureProvider([
+    const rpc = new JsonRpc(process.env.REACT_APP_EOSIO_HTTP_URL, { fetch });
+    const signatureProvider = new JsSignatureProvider([
       process.env.REACT_APP_EOSIO_PRIVATE_KEY
     ]);
     this.contractAccount = contractAccount;
-    this.eos = new eosjs.Api({ rpc, signatureProvider });
+    this.eos = new Api({
+      rpc,
+      signatureProvider,
+      textDecoder: new TextDecoder(),
+      textEncoder: new TextEncoder()
+    });
   }
 
   transaction = (actor, action, data) => {
