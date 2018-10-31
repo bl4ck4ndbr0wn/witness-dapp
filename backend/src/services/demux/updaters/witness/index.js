@@ -1,8 +1,8 @@
-const claim = require("./claim");
+import claim from "./claim";
 
 const account = process.env.EOSIO_CONTRACT_ACCOUNT;
 
-module.exports = [
+export default [
   {
     actionType: `${account}::claim`, // account::action name
     updater: claim

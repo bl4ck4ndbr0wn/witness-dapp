@@ -1,11 +1,11 @@
-const { AbstractActionHandler } = require("demux");
-const mongoose = require("mongoose");
-const Claim = require("../api/witness/witness.model");
-const BlockIndexState = require("../api/block-index-state/block-index-state.model");
-const io = require("../utils/io");
+import { AbstractActionHandler } from "demux";
+import mongoose from "mongoose";
+import { User, Profile, BlockIndexState } from "../../models";
+import io from "../../utils/io";
 
 class ActionHandler extends AbstractActionHandler {
   constructor(updaters, effects, uri) {
+    super(updaters, effects);
     mongoose.connect(uri);
 
     // CONNECTION EVENTS
@@ -34,12 +34,15 @@ class ActionHandler extends AbstractActionHandler {
         process.exit(0);
       });
     });
-    super(updaters, effects);
   }
 
   async handleWithState(handle) {
     const context = { socket: io.getSocket() };
-    const state = { claim: Claim, blockIndexState: BlockIndexState };
+    const state = {
+      user: User,
+      profile: Profile,
+      blockIndexState: BlockIndexState
+    };
     try {
       await handle(state, context);
     } catch (err) {
@@ -84,4 +87,4 @@ class ActionHandler extends AbstractActionHandler {
   }
 }
 
-module.exports = ActionHandler;
+export default ActionHandler;
