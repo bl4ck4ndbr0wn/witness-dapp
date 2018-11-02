@@ -1,9 +1,8 @@
 function claim(state, payload, blockInfo, context) {
   const claim = {
-    claim_id: payload.data.claim_id,
     claimant: payload.data.claimant,
-    claim_category: payload.data.claim_category,
-    claim: payload.data.claim,
+    category: payload.data.category,
+    content: payload.data.content,
     witnesses: payload.data.witnesses
   };
   context.socket.emit("claim", claim);

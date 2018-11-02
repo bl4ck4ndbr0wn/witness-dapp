@@ -6,9 +6,10 @@ let Profile = null;
 
 try {
   const ProfileSchema = new Schema({
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: "User"
+    handle: {
+      type: String,
+      required: true,
+      max: 40
     },
     avatar: {
       type: String
@@ -70,6 +71,10 @@ try {
     created_at: {
       type: Date,
       default: Date.now
+    },
+    profileConfirmed: {
+      type: Boolean,
+      default: false
     }
   });
   Profile = mongoose.model("Profile", ProfileSchema);

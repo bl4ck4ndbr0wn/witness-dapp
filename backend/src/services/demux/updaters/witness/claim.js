@@ -2,26 +2,25 @@ async function createClaim(state, payload, blockInfo, context) {
   const Profile = state.profile;
   try {
     let profile = await Profile.findOne({
-      user: payload.data.claimant
+      handle: payload.data.claimant
     }).exec();
 
     const newClaim = {
-      claim_id: payload.data.claim_id,
       claimant: payload.data.claimant,
-      claim: payload.data.claim,
+      content: payload.data.content,
       witnesses: payload.data.witnesses,
       claimConfirmed: true
     };
 
-    if (payload.data.claim_category === "Education") {
+    if (payload.data.category === "Education") {
       profile.education.unshift(newClaim);
 
       await profile.save();
-    } else if (payload.data.claim_category === "Experience") {
+    } else if (payload.data.category === "Experience") {
       profile.experience.unshift(newClaim);
 
       await profile.save();
-    } else if (payload.data.claim_category === "Skill") {
+    } else if (payload.data.category === "Skill") {
       profile.skill.unshift(newClaim);
 
       await profile.save();

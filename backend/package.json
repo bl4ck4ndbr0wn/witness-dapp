@@ -9,6 +9,7 @@
     "lint": "standard | snazzy"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "demux": "^2.0.0",
     "demux-eos": "^2.0.0",
@@ -18,7 +19,16 @@
     "mongoose": "^5.3.7",
     "socket.io": "^2.1.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "babel-eslint": "^10.0.1",
+    "nodemon": "^1.18.1",
+    "snazzy": "^7.1.1",
+    "standard": "^11.0.1"
+  },
   "standard": {
     "parser": "babel-eslint"
   }
