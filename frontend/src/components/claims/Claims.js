@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Claims() {
+export default function Claims({}) {
   return (
     <div class="central-meta item">
       <div class="user-post">

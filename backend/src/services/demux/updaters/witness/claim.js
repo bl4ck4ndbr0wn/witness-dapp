@@ -20,8 +20,8 @@ async function createClaim(state, payload, blockInfo, context) {
       profile.experience.unshift(newClaim);
 
       await profile.save();
-    } else if (payload.data.category === "Skill") {
-      profile.skill.unshift(newClaim);
+    } else if (payload.data.category === "Skills") {
+      profile.skills.unshift(newClaim);
 
       await profile.save();
     }

@@ -16,9 +16,8 @@ try {
     },
     skills: [
       {
-        claim_id: String,
         claimant: String,
-        claim: String,
+        content: String,
         witnesses: [String],
         claimConfirmed: {
           type: Boolean,
@@ -29,9 +28,8 @@ try {
     bio: String,
     experience: [
       {
-        claim_id: String,
         claimant: String,
-        claim: String,
+        content: String,
         witnesses: [String],
         claimConfirmed: {
           type: Boolean,
@@ -41,9 +39,8 @@ try {
     ],
     education: [
       {
-        claim_id: String,
         claimant: String,
-        claim: String,
+        content: String,
         witnesses: [String],
         claimConfirmed: {
           type: Boolean,

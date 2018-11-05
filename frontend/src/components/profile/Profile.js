@@ -50,10 +50,7 @@ export default class Profile extends Component {
 
   render() {
     return (
-      <div class="theme-layout">
-        <Header />
-        <TopHeader />
-
+      <div>
         <ProfileTop handleComponent={this.handleComponent} />
         <section>
           <div class="gap gray-bg">
@@ -79,7 +76,6 @@ export default class Profile extends Component {
             </div>
           </div>
         </section>
-        <Footer />
       </div>
     );
   }

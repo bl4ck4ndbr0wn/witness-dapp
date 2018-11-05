@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import Login from "../auth/Login";
+
 export default function TopHeader() {
   return (
     <div class="topbar stick">
@@ -21,6 +23,11 @@ export default function TopHeader() {
             <Link to="/profile" title="">
               <i class="ti-user" /> Profile
             </Link>
+          </li>
+          <li>
+            <a href="javascript;;" onClick={Login}>
+              <i class="ti-user" /> Login with scatter
+            </a>
           </li>
         </ul>
         <ul class="setting-area">
@@ -107,7 +114,8 @@ export default function TopHeader() {
             </div>
           </li>
         </ul>
-        <div class="user-img">
+
+        {/* <div class="user-img mr-4">
           <img src="images/resources/admin.jpg" alt="" />
           <span class="status f-online" />
           <div class="user-setting">
@@ -136,7 +144,7 @@ export default function TopHeader() {
             </Link>
           </div>
         </div>
-        <span class="ti-menu main-menu" data-ripple="" />
+      */}
       </div>
     </div>
   );
